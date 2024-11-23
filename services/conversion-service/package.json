@@ -4,12 +4,17 @@
     "description": "Service for converting DOCX files to PDF",
     "main": "server.js",
     "scripts": {
-      "start": "node server.js"
+        "start": "node server.js"
     },
     "dependencies": {
-      "dotenv": "^16.0.3",
-      "express": "^4.18.2",
-      "cors": "^2.8.5"
+        "@pspdfkit/nodejs": "^0.0.6",
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "fs": "^0.0.1-security",
+        "libreoffice-convert": "^1.6.0",
+        "tmp": "^0.2.3",
+        "url": "^0.11.4",
+        "util": "^0.12.5"
     }
-  }
-  
+}

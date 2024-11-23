@@ -1,6 +1,6 @@
 const express = require('express');
-const uploadController = require('../controllers/uploadController');
-const metadataController = require('../controllers/metadataController');
+const uploadController = require('../controllers/uploadController.js');
+const metadataController = require('../controllers/metadataController.js');
 
 const router = express.Router();
 

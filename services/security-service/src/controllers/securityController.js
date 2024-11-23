@@ -1,4 +1,4 @@
-const encryptionUtils = require('../utils/encryptionUtils');
+const encryptionUtils = require('../utils/encryptionUtils.js');
 
 exports.encryptPdf = async (req, res) => {
   const { pdfFilePath, password } = req.body; // Expects the path of the PDF and the password

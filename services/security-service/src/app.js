@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const securityRoutes = require('./routes/securityRoutes');
+const securityRoutes = require('./routes/securityRoutes.js');
 
 const app = express();
 

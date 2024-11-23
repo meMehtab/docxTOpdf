@@ -1,5 +1,4 @@
-const hummus = require('muhammara');
-const path = require('path');
+const Recipe = require('muhammara').Recipe;
 const fs = require('fs');
 
 exports.encryptPdf = (pdfFilePath, password) => {
@@ -7,19 +6,16 @@ exports.encryptPdf = (pdfFilePath, password) => {
     try {
       const encryptedPdfPath = pdfFilePath.replace('.pdf', '-encrypted.pdf');
 
-      // Open the PDF for encryption
-      const writer = hummus.createWriterToModify(
-        pdfFilePath,
-        { modifiedFilePath: encryptedPdfPath }
-      );
+      // Open the PDF for modification
+      const pdfDoc =new Recipe(pdfFilePath, encryptedPdfPath);
 
-      writer.encrypt({
+      pdfDoc.encrypt({
         userPassword: password,
         ownerPassword: password,
-        userProtectionFlag: 4 // Allows viewing and printing only
-      });
+        userProtectionFlag: 4,
+      })
+      .endPDF();
 
-      writer.end();
 
       // Ensure the new file exists before resolving
       if (fs.existsSync(encryptedPdfPath)) {

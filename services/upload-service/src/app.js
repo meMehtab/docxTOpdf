@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const uploadRoutes = require('./routes/uploadRoutes');
+const uploadRoutes = require('./routes/uploadRoutes.js');
 
 const app = express();
 

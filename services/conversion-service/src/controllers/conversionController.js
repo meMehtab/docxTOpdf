@@ -8,15 +8,16 @@ exports.convertDocxToPdf = async (req, res) => {
     return res.status(400).json({ message: 'File name is required' });
   }
 
-  const inputPath = path.resolve(__dirname, '../../uploads', fileName);
+  // Define input and output file paths
+  const inputPath = path.resolve(__dirname, '../../../upload-service/uploads', fileName);
   const outputPath = path.resolve(__dirname, '../../converted', fileName.replace('.docx', '.pdf'));
 
   try {
-    await libreOfficeUtils.convertToPdf(inputPath, outputPath);
-    res.status(200).json({
-      message: 'File converted successfully',
-      pdfFilePath: outputPath
-    });
+    // Call the conversion utility
+    const result = await libreOfficeUtils.convertToPdf(inputPath, outputPath);
+
+    // Send success response with PDF path
+    res.status(200).json(result);
   } catch (error) {
     res.status(500).json({ message: 'File conversion failed', error: error.message });
   }
