@@ -1,108 +1,83 @@
 
 # docxTOpdf
 
-This project provides a simple service to encrypt PDF files using the `muhammara` library. You can use this service to protect your PDFs by adding password encryption that restricts access to the file.
+This project consists of four main services:
+1. **Upload Service**: Handles file upload functionality.
+2. **Conversion Service**: Processes and converts files after upload.
+3. **Encryption Service**: Secures files by encrypting them after conversion.
+4. **Frontend**: User interface to interact with the backend services.
 
-## Features
-- Encrypt PDF files with user and owner passwords.
-- User protection flag allows viewing and printing only.
-- Easy-to-use Node.js service for PDF encryption.
+The backend services (Upload, Conversion, and Encryption) are written in Node.js and are managed with PM2, while the frontend is served using live-server.
 
-## Table of Contents
-1. [Installation](#installation)
-2. [Usage](#usage)
-3. [API](#api)
-4. [Contributing](#contributing)
-5. [License](#license)
+## 1. Upload Service
+The Upload Service is responsible for handling file uploads. Users can upload files to the server, which are then processed by the Conversion and Encryption services. This service listens on port **3001**.
 
-## Installation
+### Key Features:
+- Allows users to upload files via HTTP requests.
+- Files are saved in the server for further processing.
+
+## 2. Conversion Service
+The Conversion Service takes the uploaded files and performs necessary conversions on them. The service listens on port **3002**.
+
+### Key Features:
+- Converts files to the desired format after upload.
+- Can be customized for various file formats.
+
+## 3. Encryption Service
+The Encryption Service secures the converted files by encrypting them. It ensures that the files are securely stored or transmitted. This service listens on port **3003**.
+
+### Key Features:
+- Encrypts files using advanced encryption algorithms.
+- Ensures data privacy and integrity.
+
+## 4. Frontend
+The Frontend is the user-facing part of the application, allowing users to upload files and interact with the backend services. The frontend is served using the **live-server** tool and listens on port **3000**.
+
+### Key Features:
+- Provides an interface for uploading files.
+- Displays the status of uploaded, converted, and encrypted files.
+
+## Steps to Run the Dockerfile
 
 ### 1. Clone the Repository
-
-First, clone this repository to your local machine:
-
-```bash
-git clone https://github.com/your-username/pdf-encryption-service.git
-cd pdf-encryption-service
-```
-
-### 2. Install Dependencies
-
-Next, install the necessary dependencies using npm:
+Clone the repository containing the Dockerfile and application code.
 
 ```bash
-npm install
+git clone <repository-url>
+cd <repository-folder>
 ```
 
-This will install the required libraries, including `muhammara` for PDF encryption.
+### 2. Build the Docker Image
+Build the Docker image using the following command:
 
-## Usage
-
-### 1. Encrypt a PDF File
-
-To encrypt a PDF file, you need to call the `encryptPdf` function, providing the path to the PDF file and the desired password. Here’s an example usage:
-
-```javascript
-const { encryptPdf } = require('./path/to/your/encryption-service');
-
-const pdfFilePath = './path/to/sample.pdf';  // Path to the PDF file
-const password = 'your-strong-password';    // Password for encryption
-
-encryptPdf(pdfFilePath, password)
-  .then(encryptedFilePath => {
-    console.log(`Encrypted PDF saved at: ${encryptedFilePath}`);
-  })
-  .catch(error => {
-    console.error('Encryption failed:', error);
-  });
+```bash
+docker build -t my-app .
 ```
 
-This will take the input PDF file, apply the encryption, and save it as a new file with the suffix `-encrypted.pdf`.
+### 3. Run the Docker Container
+Run the Docker container from the built image:
 
-### 2. Options for Encryption
-
-- **User Password**: The password required to open the PDF.
-- **Owner Password**: The password for the owner of the PDF. It provides full access to modify the PDF.
-- **User Protection Flag**: A flag that controls the permissions of the user (e.g., printing, copying, etc.). Default flag is `4`, which restricts the PDF to only viewing and printing.
-
-## API
-
-### `encryptPdf(pdfFilePath, password)`
-
-Encrypts the given PDF file with the specified password.
-
-#### Parameters:
-- `pdfFilePath` (string): The path to the PDF file to be encrypted.
-- `password` (string): The password to be applied to the PDF file for encryption.
-
-#### Returns:
-- A promise that resolves with the path of the newly encrypted PDF file.
-
-#### Example:
-
-```javascript
-encryptPdf('path/to/document.pdf', 'password123')
-  .then(encryptedPath => console.log('Encrypted PDF created at:', encryptedPath))
-  .catch(error => console.error('Error:', error));
+```bash
+docker run -p 3000:3000 -p 3001:3001 -p 3002:3002 -p 3003:3003 my-app
 ```
 
-## Contributing
+This will start the frontend and backend services, making them accessible at the following URLs:
+- Frontend: `http://localhost:3000`
+- Upload Service: `http://localhost:3001`
+- Conversion Service: `http://localhost:3002`
+- Encryption Service: `http://localhost:3003`
 
-We welcome contributions to this project. If you'd like to improve the service, please fork the repository and create a pull request with your proposed changes. To contribute:
+### 4. Access the Application
+Once the container is running, you can open your browser and visit `http://localhost:3000` to interact with the frontend and upload files. The backend services will process the uploaded files as described.
 
-1. Fork this repository.
-2. Clone your fork to your local machine.
-3. Create a new branch for your feature or fix.
-4. Make your changes and commit them with a meaningful message.
-5. Push your changes to your fork.
-6. Create a pull request.
+### 5. Stopping the Docker Container
+To stop the running Docker container, use:
 
-We will review your contribution and merge it after a successful review.
+```bash
+docker stop <container_id>
+```
 
-## License
+## Conclusion
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project enables users to upload, convert, and encrypt files in a secure and efficient manner. By using Docker, the entire system is easily deployable and can be run locally or on any cloud provider.
 
----
-
-If you encounter any issues or have suggestions, feel free to open an issue in the repository. Happy coding! 😊
