@@ -1,0 +1,13 @@
+{
+    "name": "frontend",
+    "version": "1.0.0",
+    "description": "Frontend for document processing and PDF encryption",
+    "scripts": {
+      "start": "live-server public"
+    },
+    "dependencies": {},
+    "devDependencies": {
+      "live-server": "^1.2.2"
+    }
+  }
+  
