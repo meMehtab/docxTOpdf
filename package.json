@@ -1,0 +1,33 @@
+{
+    "name": "full-project",
+    "version": "1.0.0",
+    "description": "A project with multiple services: upload, security, conversion, and frontend",
+    "main": "index.js",
+    "scripts": {
+      "start:upload": "cd services/upload-service && npm start",
+      "start:conversion": "cd services/conversion-service && npm start",
+      "start:security": "cd services/security-service && npm start",
+      "start:frontend": "cd frontend && npm start",
+      "start": "npm run start:upload && npm run start:conversion && npm run start:security && npm run start:frontend"
+    },
+    "dependencies": {
+      "dotenv": "^16.0.3",
+      "express": "^4.18.2",
+      "multer": "1.4.5-lts.1",
+      "cors": "^2.8.5",
+      "muhammara": "5.2.0",
+      "@pspdfkit/nodejs": "^0.0.6",
+      "fs": "^0.0.1-security",
+      "libreoffice-convert": "^1.6.0",
+      "tmp": "^0.2.3",
+      "url": "^0.11.4",
+      "util": "^0.12.5",
+      "live-server": "1.2.2"
+    },
+    "devDependencies": {},
+    "engines": {
+      "node": ">=14.0.0"
+    },
+    "license": "MIT"
+  }
+  

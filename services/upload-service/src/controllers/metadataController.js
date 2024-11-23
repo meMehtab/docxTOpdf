@@ -3,7 +3,7 @@ const path = require('path');
 
 exports.getFileMetadata = (req, res) => {
   const { fileName } = req.params;
-  const filePath = path.join(__dirname, '../../uploads', fileName);
+  const filePath = path.join(__dirname, '../../../uploads', fileName);
 
   fs.stat(filePath, (err, stats) => {
     if (err) {

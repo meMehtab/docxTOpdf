@@ -9,8 +9,8 @@ exports.convertDocxToPdf = async (req, res) => {
   }
 
   // Define input and output file paths
-  const inputPath = path.resolve(__dirname, '../../../upload-service/uploads', fileName);
-  const outputPath = path.resolve(__dirname, '../../converted', fileName.replace('.docx', '.pdf'));
+  const inputPath = path.resolve('uploads/', fileName);
+  const outputPath = path.resolve('converted/', fileName.replace('.docx', '.pdf'));
 
   try {
     // Call the conversion utility
