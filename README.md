@@ -43,8 +43,8 @@ The Frontend is the user-facing part of the application, allowing users to uploa
 Clone the repository containing the Dockerfile and application code.
 
 ```bash
-git clone <repository-url>
-cd <repository-folder>
+git clone https://github.com/meMehtab/docxTOpdf.git
+cd docxTOpdf
 ```
 
 ### 2. Build the Docker Image
